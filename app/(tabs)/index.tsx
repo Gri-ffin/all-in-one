@@ -30,11 +30,20 @@ export default function HomeScreen() {
             <Text fontSize='$5'>Illia Frunza</Text>
           </YStack>
         </XStack>
+        {/* TODO: should allow the ability to change the provider (eg. myanimelist, anilist...) */}
         <Button>
           <Ionicons size={28} name='settings-outline' color='black' />
         </Button>
       </XStack>
       <Input placeholder='Search manga or anime' marginTop={22} />
+      <XStack alignItems='center' justifyContent='space-between' marginTop={17}>
+        <Text fontSize='$4'>Trending Anime</Text>
+        {/* TODO: should allow the ability to change between anime and manga */}
+        <Button>
+          <Ionicons size={28} name='ellipsis-horizontal' color='black' />
+        </Button>
+      </XStack>
+      {/* TODO: add the list of trending anime */}
     </View>
   )
 }
