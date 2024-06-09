@@ -1,7 +1,8 @@
+import Avatar from '@/components/Avatar'
 import config from '@/tamagui.config'
 import { Ionicons } from '@expo/vector-icons'
 import { Text, View, styled } from '@tamagui/core'
-import { Image, Input, XStack, YStack } from 'tamagui'
+import { Button, Image, Input, XStack, YStack } from 'tamagui'
 
 const SecondaryText = styled(Text, {
   color: config.themes.secondary.gray,
@@ -14,12 +15,9 @@ export default function HomeScreen() {
       <XStack alignItems='center' justifyContent='space-between'>
         {/* TODO: the source of the image should be updated to the user pfp, the same can be said to the lable */}
         <XStack>
-          <Image
-            borderRadius={100}
+          <Avatar
             source={{ uri: 'https://i.pravatar.cc/300' }}
-            alt='Avatar'
-            width={60}
-            height={60}
+            alt='Illia Frunza'
           />
           <YStack
             alignItems='center'
@@ -32,11 +30,11 @@ export default function HomeScreen() {
             <Text fontSize='$5'>Illia Frunza</Text>
           </YStack>
         </XStack>
-        <View shadowColor='black'>
+        <Button>
           <Ionicons size={28} name='settings-outline' color='black' />
-        </View>
+        </Button>
       </XStack>
-      <Input placeholder='Search manga or anime' />
+      <Input placeholder='Search manga or anime' marginTop={22} />
     </View>
   )
 }
