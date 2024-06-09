@@ -22,12 +22,9 @@ export default function HomeScreen() {
             height={60}
           />
           <YStack
-            width={78}
-            height={36}
             alignItems='center'
             flexDirection='column'
             justifyContent='center'
-            marginTop={10}
             marginLeft={10}
           >
             <SecondaryText>Stay trending!</SecondaryText>
