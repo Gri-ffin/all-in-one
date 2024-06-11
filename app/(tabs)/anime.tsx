@@ -1,6 +1,5 @@
 import { getTrendingAnime } from '@/api/trending/api'
 import Avatar from '@/components/Avatar'
-import Card from '@/components/Card'
 import config from '@/tamagui.config'
 import { Ionicons } from '@expo/vector-icons'
 import { Text, View, styled } from '@tamagui/core'
@@ -14,7 +13,7 @@ const SecondaryText = styled(Text, {
   fontSize: 12
 })
 
-export default function HomeScreen() {
+export default function AnimeScreen() {
   // TODO: this should pass an api to switch between the providers
   const trendingQuery = useQuery<MyAnimeListTrendingAnimeResponse>({
     queryKey: ['trending'],
