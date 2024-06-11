@@ -7,6 +7,7 @@ import { Text, View, styled } from '@tamagui/core'
 import { useQuery } from '@tanstack/react-query'
 import { Button, Input, Spinner, XStack, YStack } from 'tamagui'
 import type { MyAnimeListTrendingAnimeResponse } from '@/api/trending/types'
+import Trending from '@/components/trending'
 
 const SecondaryText = styled(Text, {
   color: config.themes.secondary.gray,
@@ -31,15 +32,7 @@ export default function HomeScreen() {
   }
 
   if (trendingQuery.isSuccess) {
-    trendingSection = (
-      <View>
-        <Card
-          imageSource={trendingQuery.data.data[1].images.jpg.image_url}
-          title={trendingQuery.data.data[1].title}
-          score={trendingQuery.data.data[1].score}
-        />
-      </View>
-    )
+    trendingSection = <Trending data={trendingQuery.data.data} />
   }
   return (
     <View marginHorizontal={33} marginVertical={58}>
@@ -74,7 +67,6 @@ export default function HomeScreen() {
           <Ionicons size={28} name='ellipsis-horizontal' color='black' />
         </Button>
       </XStack>
-      {/* TODO: add the list of trending anime */}
       {trendingSection}
     </View>
   )
