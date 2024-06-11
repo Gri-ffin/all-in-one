@@ -8,6 +8,7 @@ interface Props {
   score: number
 }
 
+// the card should redirect to a details page about the anime passed in props
 const Card = ({ imageSource, title, score }: Props) => {
   return (
     <YStack width={120}>
