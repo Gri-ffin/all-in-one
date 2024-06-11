@@ -2,7 +2,7 @@ export interface MyAnimeListTrendingAnimeResponse {
   data: MyAnimeListTrendingAnime[]
 }
 
-interface MyAnimeListTrendingAnime {
+export interface MyAnimeListTrendingAnime {
   mal_id: number
   images: {
     jpg: {
