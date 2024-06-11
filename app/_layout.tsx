@@ -7,9 +7,12 @@ import 'react-native-reanimated'
 
 import { TamaguiProvider } from '@tamagui/core'
 import config from '@/tamagui.config'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
+
+const queryClient = new QueryClient()
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -27,12 +30,14 @@ export default function RootLayout() {
   }
 
   return (
-    <TamaguiProvider config={config}>
-      <Stack>
-        <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
-        <Stack.Screen name='+not-found' />
-      </Stack>
-      <StatusBar style='dark' />
-    </TamaguiProvider>
+    <QueryClientProvider client={queryClient}>
+      <TamaguiProvider config={config}>
+        <Stack>
+          <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+          <Stack.Screen name='+not-found' />
+        </Stack>
+        <StatusBar style='dark' />
+      </TamaguiProvider>
+    </QueryClientProvider>
   )
 }

@@ -1,8 +1,13 @@
+import { getTrendingAnime } from '@/api/trending/api'
 import Avatar from '@/components/Avatar'
+import Card from '@/components/Card'
 import config from '@/tamagui.config'
 import { Ionicons } from '@expo/vector-icons'
 import { Text, View, styled } from '@tamagui/core'
-import { Button, Image, Input, XStack, YStack } from 'tamagui'
+import { useQuery } from '@tanstack/react-query'
+import { Button, Input, Spinner, XStack, YStack } from 'tamagui'
+import type { MyAnimeListTrendingAnimeResponse } from '@/api/trending/types'
+import Trending from '@/components/trending'
 
 const SecondaryText = styled(Text, {
   color: config.themes.secondary.gray,
@@ -10,6 +15,25 @@ const SecondaryText = styled(Text, {
 })
 
 export default function HomeScreen() {
+  // TODO: this should pass an api to switch between the providers
+  const trendingQuery = useQuery<MyAnimeListTrendingAnimeResponse>({
+    queryKey: ['trending'],
+    queryFn: getTrendingAnime
+  })
+
+  let trendingSection = null
+
+  if (trendingQuery.isLoading) {
+    trendingSection = (
+      <View justifyContent='center' alignItems='center'>
+        <Spinner size='large' color='$blue10Light' />
+      </View>
+    )
+  }
+
+  if (trendingQuery.isSuccess) {
+    trendingSection = <Trending data={trendingQuery.data.data} />
+  }
   return (
     <View marginHorizontal={33} marginVertical={58}>
       <XStack alignItems='center' justifyContent='space-between'>
@@ -43,7 +67,7 @@ export default function HomeScreen() {
           <Ionicons size={28} name='ellipsis-horizontal' color='black' />
         </Button>
       </XStack>
-      {/* TODO: add the list of trending anime */}
+      {trendingSection}
     </View>
   )
 }
