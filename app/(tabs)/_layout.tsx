@@ -3,11 +3,8 @@ import React from 'react'
 
 import { TabBarIcon } from '@/components/navigation/TabBarIcon'
 import { Colors } from '@/constants/Colors'
-import { useColorScheme } from '@/hooks/useColorScheme'
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme()
-
   return (
     <Tabs
       screenOptions={{
@@ -18,22 +15,19 @@ export default function TabLayout() {
       <Tabs.Screen
         name='index'
         options={{
-          title: 'Home',
+          title: 'Anime',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? 'home' : 'home-outline'}
-              color={color}
-            />
+            <TabBarIcon name={focused ? 'tv' : 'tv-outline'} color={color} />
           )
         }}
       />
       <Tabs.Screen
-        name='explore'
+        name='manga'
         options={{
-          title: 'Explore',
+          title: 'Manga',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? 'code-slash' : 'code-slash-outline'}
+              name={focused ? 'book' : 'book-outline'}
               color={color}
             />
           )

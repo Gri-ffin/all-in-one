@@ -1,6 +1,6 @@
 import { Text, View } from '@tamagui/core'
 
-export default function TabTwoScreen() {
+export default function MangaScreen() {
   return (
     <View>
       <Text>Tab Two</Text>

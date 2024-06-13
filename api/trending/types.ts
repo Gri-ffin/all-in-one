@@ -1,18 +1,5 @@
-export interface MyAnimeListTrendingAnimeResponse {
-  data: MyAnimeListTrendingAnime[]
-}
+import type { Anime } from '../types'
 
-export interface MyAnimeListTrendingAnime {
-  mal_id: number
-  images: {
-    jpg: {
-      image_url: string
-      small_image_url: string
-      large_image_url: string
-    }
-  }
-  title: string
-  title_japanese: string
-  title_english: string
-  score: number
+export interface MyAnimeListTrendingAnimeResponse {
+  data: Anime[]
 }
