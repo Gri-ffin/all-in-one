@@ -45,7 +45,7 @@ const RandomSection = () => {
       />
       <Text
         fontSize='$6'
-        maxWidth={100}
+        maxWidth={300}
         numberOfLines={1}
         overflow='hidden'
         textOverflow='ellipsis'
