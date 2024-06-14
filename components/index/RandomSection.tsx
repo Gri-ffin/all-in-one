@@ -14,7 +14,7 @@ const RandomSection = () => {
   if (randomAnimeQuery.isLoading) {
     return (
       <View justifyContent='center' alignItems='center'>
-        <Spinner size='large' color='white' />
+        <Spinner size='large' color='$blue10Light' />
       </View>
     )
   }
