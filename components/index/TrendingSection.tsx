@@ -40,7 +40,7 @@ const TrendingSection = () => {
     <>
       <XStack alignItems='center' justifyContent='space-between' marginTop={17}>
         <Text fontSize='$4'>Trending Anime</Text>
-        {/* TODO: should allow the ability to change between anime and manga */}
+        {/* TODO: should allow the ability to change between trending, favorties, etc.. */}
         <Button>
           <Ionicons size={28} name='ellipsis-horizontal' color='black' />
         </Button>
