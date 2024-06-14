@@ -1,9 +1,12 @@
-import { Text, View } from '@tamagui/core'
+import Header from '@/components/Header'
+import Wrapper from "@/components/Wrapper";
+import { Input } from 'tamagui';
 
 export default function MangaScreen() {
   return (
-    <View>
-      <Text>Tab Two</Text>
-    </View>
+    <Wrapper>
+      <Header />
+      <Input placeholder='Seach manga' marginTop={22} />
+    </Wrapper>
   )
 }
