@@ -73,7 +73,7 @@ export interface Manga {
   publishing: boolean
   published: {
     from: string
-    to: string
+    to?: string
   }
   score: number
   scored_by: number
