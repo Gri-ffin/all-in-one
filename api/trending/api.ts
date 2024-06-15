@@ -11,7 +11,7 @@ export const getTrendingAnime = async () => {
 
 export const getTrendingManga = async () => {
   const response = await axios.get(
-    MYANIMELIST_API + '/top/manga?limit=4&filter=publishing'
+    MYANIMELIST_API + '/top/manga?limit=10&filter=publishing'
   )
   return response.data
 }
