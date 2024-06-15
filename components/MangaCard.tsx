@@ -29,7 +29,7 @@ const MangaCard = ({ title, image_source, score, popularity, from, to }: Props) 
         <Image source={{ uri: image_source }} alt={title} width={60} height={90} borderRadius={10} />
         <View justifyContent="space-between" flexDirection="column" marginLeft={10}>
           <View>
-            <Text color='white' fontSize='$4' overflow="hidden" textOverflow="ellipsis" numberOfLines={2}>{title}</Text>
+            <Text width={90} color='white' fontSize='$4' overflow="hidden" textOverflow="ellipsis" numberOfLines={2}>{title}</Text>
             <XStack alignItems='center'>
               <Ionicons name='star' size={16} color='orange' />
               <Text color='white' fontSize='$6'>
@@ -43,8 +43,8 @@ const MangaCard = ({ title, image_source, score, popularity, from, to }: Props) 
         </View>
       </XStack>
       <YStack justifyContent="center" alignItems="center">
-        <Text color='white'>from: {new Date(from).getFullYear()}</Text>
-        {to && <Text color='white'>to: {new Date(to).getFullYear()}</Text>}
+        <Text fontSize='$5' textDecorationLine="underline" col='white'>Publishing</Text>
+        <Text color='white' marginVertical={5}>from: {new Date(from).getFullYear()}</Text>
       </YStack>
     </XStack>
   )
