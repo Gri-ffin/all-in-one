@@ -1,9 +1,9 @@
-import type { MyAnimeListTrendingAnime } from '@/api/trending/types'
 import { ScrollView, XStack } from 'tamagui'
-import Card from '../Card'
+import AnimeCard from '../AnimeCard'
+import type { Anime } from '@/api/types'
 
 interface Props {
-  data: MyAnimeListTrendingAnime[]
+  data: Anime[]
 }
 
 const Trending = ({ data }: Props) => {
@@ -15,7 +15,7 @@ const Trending = ({ data }: Props) => {
     >
       <XStack gap={20}>
         {data.map(item => (
-          <Card
+          <AnimeCard
             key={item.mal_id}
             imageSource={item.images.jpg.image_url}
             title={item.title}

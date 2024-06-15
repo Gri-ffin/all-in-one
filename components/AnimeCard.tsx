@@ -9,7 +9,7 @@ interface Props {
 }
 
 // the card should redirect to a details page about the anime passed in props
-const Card = ({ imageSource, title, score }: Props) => {
+const AnimeCard = ({ imageSource, title, score }: Props) => {
   return (
     <YStack width={120}>
       <Image
@@ -46,4 +46,4 @@ const Card = ({ imageSource, title, score }: Props) => {
   )
 }
 
-export default Card
+export default AnimeCard
