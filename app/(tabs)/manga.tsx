@@ -56,7 +56,7 @@ export default function MangaScreen() {
   return (
     <Wrapper>
       <Header />
-      <Input placeholder='Seach manga' marginTop={22} />
+      <Input placeholder='Search manga' marginTop={22} />
       <XStack alignItems='center' justifyContent='space-between' marginTop={17}>
         <Text fontSize='$4'>Trending Manga</Text>
         <Button>
