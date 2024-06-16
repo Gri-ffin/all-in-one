@@ -44,8 +44,8 @@ export default function MangaScreen() {
               popularity={manga.popularity}
               score={manga.score}
               from={manga.published.from}
-              to={manga.published.to}
               key={manga.mal_id}
+              id={manga.mal_id}
             />
           ))}
         </View>
