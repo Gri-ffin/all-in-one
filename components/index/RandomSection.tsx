@@ -30,7 +30,10 @@ const RandomSection = () => {
   }
 
   return (
-    <Link href='/details' asChild>
+    <Link
+      href={{ pathname: '/details/[id]', params: { id: randomAnimeQuery.data?.data.mal_id } }}
+      asChild
+    >
       <XStack
         alignItems='center'
         justifyContent='center'
