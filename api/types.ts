@@ -42,7 +42,7 @@ export interface Anime {
   favorites: number
   synopsis: string
   backgroud: string
-  season: string
+  season?: string
   year: number
   genres: Genre[]
 }
