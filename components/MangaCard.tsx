@@ -14,7 +14,7 @@ interface Props {
 
 const MangaCard = ({ title, image_source, score, popularity, from, id }: Props) => {
   return (
-    <Link href={{ pathname: '/details/[id]', params: { id } }} asChild>
+    <Link href={{ pathname: '/details/manga/[id]', params: { id } }} asChild>
       <XStack
         justifyContent="space-between"
         backgroundColor={config.themes.secondary.gradient}
