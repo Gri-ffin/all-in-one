@@ -1,17 +1,27 @@
 import { getRandomAnime } from '@/api/random/api'
 import type { RandomAnimeResponse } from '@/api/random/types'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { Spinner, Text, View, XStack } from 'tamagui'
 import Avatar from '../Avatar'
 import config from '@/tamagui.config'
-import { Link } from 'expo-router'
+import { Link, useFocusEffect } from 'expo-router'
 import { StyleSheet } from 'react-native'
+import { useCallback } from 'react'
 
 const RandomSection = () => {
+  const queryClient = useQueryClient()
+
+  useFocusEffect(useCallback(() => {
+    queryClient.invalidateQueries({ queryKey: ['randomAnime'] })
+  }, [queryClient])
+  )
+
   const randomAnimeQuery = useQuery<RandomAnimeResponse>({
     queryKey: ['randomAnime'],
-    queryFn: getRandomAnime
+    queryFn: getRandomAnime,
   })
+
+
 
   if (randomAnimeQuery.isLoading) {
     return (
