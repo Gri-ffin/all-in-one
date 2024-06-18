@@ -45,6 +45,7 @@ export interface Anime {
   season?: string
   year: number
   genres: Genre[]
+  studios: Studio[]
 }
 
 export interface Manga {
@@ -95,4 +96,11 @@ interface Genre {
 interface Title {
   type: string
   title: string
+}
+
+interface Studio {
+  mal_id: number
+  type: string
+  name: string
+  url: string
 }
