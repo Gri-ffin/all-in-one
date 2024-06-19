@@ -4,9 +4,13 @@ import Wrapper from "@/components/Wrapper"
 import { Ionicons } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
 import { useLocalSearchParams, useNavigation } from "expo-router"
-import { Spinner, Text, View, Image, XStack, Button, YStack, ScrollView } from "tamagui"
+import { Spinner, Text, View, Image, XStack, Button, YStack, Separator } from "tamagui"
 import config from '@/tamagui.config'
 import { ExternalLink } from "@/components/ExternalLink"
+import { useState } from "react"
+import SynopsisSection from "@/components/details/Synopsis"
+
+type Tab = 'synopsis' | 'characters'
 
 const DetailsScreen = () => {
   const { id } = useLocalSearchParams()
@@ -15,6 +19,14 @@ const DetailsScreen = () => {
     queryKey: ['anime-details', id],
     queryFn: () => getAnimeDetails(parseInt(id as string)),
   })
+  const [tab, setTab] = useState<Tab>('synopsis')
+
+  const setSynopsisTab = () => {
+    setTab('synopsis')
+  }
+  const setCharactersTab = () => {
+    setTab('characters')
+  }
 
   if (query.isLoading) {
     return (
@@ -56,24 +68,12 @@ const DetailsScreen = () => {
           <Text fontSize='$6' color='gray' lineHeight={20}>genres: {query.data?.data.genres.map(genre => genre.name).join(', ') || '??'}</Text>
         </YStack>
       </XStack>
-      <XStack marginTop={30} borderWidth={0.3} borderRadius={20} width={309} marginHorizontal={-8}>
-        <YStack borderRightWidth={0.3} width="32%" alignItems="center" paddingVertical={17} justifyContent="center">
-          <Text fontSize='$3' textAlign="center">{query.data?.data.type}</Text>
-          <Text fontSize='$6' color='gray'>Type</Text>
-        </YStack>
-        <YStack borderRightWidth={0.3} width='34%' alignItems="center" paddingVertical={17} justifyContent="center">
-          <Text fontSize='$3' textAlign="center">{query.data?.data.source}</Text>
-          <Text fontSize='$6' color='gray'>Source</Text>
-        </YStack>
-        <YStack width='34%' alignItems="center" paddingVertical={17} justifyContent="center">
-          <Text fontSize='$3' textAlign="center">{query.data?.data.rating.split(' - ')[0]}</Text>
-          <Text fontSize='$6' color='gray'>Rating</Text>
-        </YStack>
+      <XStack marginTop={30} borderWidth={0.3} borderRadius={15} marginHorizontal={-8} alignItems="center" justifyContent='space-evenly' paddingVertical={8}>
+        <Text color={tab === 'synopsis' ? config.themes.secondary.gradient : 'gray'} onPress={setSynopsisTab}>Synopsis</Text>
+        <Separator alignSelf="stretch" vertical marginHorizontal={15} />
+        <Text color={tab === 'characters' ? config.themes.secondary.gradient : 'gray'} onPress={setCharactersTab}>Characters</Text>
       </XStack>
-      <ScrollView marginTop={30} height='$20' contentContainerStyle={{ paddingBottom: 20 }}>
-        <Text fontSize={12} lineHeight={20}>{query.data?.data.synopsis}</Text>
-        <Button marginTop={15} color='white' bg={config.themes.secondary.gradient}>Add to favorites</Button>
-      </ScrollView>
+      <SynopsisSection query={query} />
     </Wrapper>
   )
 }
