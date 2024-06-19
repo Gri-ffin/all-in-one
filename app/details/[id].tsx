@@ -9,6 +9,7 @@ import config from '@/tamagui.config'
 import { ExternalLink } from "@/components/ExternalLink"
 import { useState } from "react"
 import SynopsisSection from "@/components/details/Synopsis"
+import CharactersSection from "@/components/details/Characters"
 
 type Tab = 'synopsis' | 'characters'
 
@@ -64,7 +65,7 @@ const DetailsScreen = () => {
           <Text fontSize='$6' color='gray' marginVertical={6}>status: {query.data?.data.status}</Text>
           <Text fontSize='$6' color='gray' marginBottom={6}>rank: #{query.data?.data.popularity}</Text>
           <Text fontSize='$6' color='gray' marginBottom={6}>season: {query.data?.data.season || '??'}</Text>
-          <Text fontSize='$6' color='gray' marginBottom={5}>studio: <ExternalLink style={{ color: 'blue' }} href={query.data!.data.studios[0].url}>{query.data?.data.studios[0].name}</ExternalLink></Text>
+          <Text fontSize='$6' color='gray' marginBottom={5}>studio: <ExternalLink style={{ color: 'blue' }} href={query.data?.data.studios ? query.data?.data.studios[0].url : ''}>{query.data?.data.studios ? query.data?.data.studios[0].name : '??'}</ExternalLink></Text>
           <Text fontSize='$6' color='gray' lineHeight={20}>genres: {query.data?.data.genres.map(genre => genre.name).join(', ') || '??'}</Text>
         </YStack>
       </XStack>
@@ -74,6 +75,7 @@ const DetailsScreen = () => {
         <Text color={tab === 'characters' ? config.themes.secondary.gradient : 'gray'} onPress={setCharactersTab}>Characters</Text>
       </XStack>
       {tab === 'synopsis' && <SynopsisSection query={query} />}
+      {tab === 'characters' && <CharactersSection id={parseInt(id as string)} />}
     </Wrapper>
   )
 }
