@@ -1,11 +1,11 @@
-import { getTrendingManga } from '@/api/trending/api';
-import { MyAnimeListTrendingMangaResponse } from '@/api/trending/types';
+import { getTrendingManga } from '@/api/trending/api'
+import { MyAnimeListTrendingMangaResponse } from '@/api/trending/types'
 import Header from '@/components/Header'
-import MangaCard from '@/components/MangaCard';
-import Wrapper from "@/components/Wrapper";
-import { Ionicons } from '@expo/vector-icons';
-import { useQuery } from '@tanstack/react-query';
-import { Input, XStack, Text, Button, View, Spinner, ScrollView } from 'tamagui';
+import MangaCard from '@/components/MangaCard'
+import Wrapper from '@/components/Wrapper'
+import { Ionicons } from '@expo/vector-icons'
+import { useQuery } from '@tanstack/react-query'
+import { Input, XStack, Text, Button, View, Spinner, ScrollView } from 'tamagui'
 
 export default function MangaScreen() {
   const query = useQuery<MyAnimeListTrendingMangaResponse>({

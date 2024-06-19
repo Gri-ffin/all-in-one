@@ -11,17 +11,16 @@ import { useCallback } from 'react'
 const RandomSection = () => {
   const queryClient = useQueryClient()
 
-  useFocusEffect(useCallback(() => {
-    queryClient.invalidateQueries({ queryKey: ['randomAnime'] })
-  }, [queryClient])
+  useFocusEffect(
+    useCallback(() => {
+      queryClient.invalidateQueries({ queryKey: ['randomAnime'] })
+    }, [queryClient])
   )
 
   const randomAnimeQuery = useQuery<RandomAnimeResponse>({
     queryKey: ['randomAnime'],
-    queryFn: getRandomAnime,
+    queryFn: getRandomAnime
   })
-
-
 
   if (randomAnimeQuery.isLoading) {
     return (
@@ -41,7 +40,10 @@ const RandomSection = () => {
 
   return (
     <Link
-      href={{ pathname: '/details/[id]', params: { id: randomAnimeQuery.data?.data.mal_id } }}
+      href={{
+        pathname: '/details/[id]',
+        params: { id: randomAnimeQuery.data?.data.mal_id }
+      }}
       asChild
     >
       <XStack
