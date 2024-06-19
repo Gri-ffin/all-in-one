@@ -1,18 +1,7 @@
 export interface Anime {
   mal_id: number
   url: string
-  images: {
-    jpg: {
-      image_url: string
-      small_image_url: string
-      large_image_url: string
-    }
-    webp: {
-      image_url: string
-      small_image_url: string
-      large_image_url: string
-    }
-  }
+  images: Image
   trailer: {
     youtube_id: string
     url: string
@@ -45,24 +34,13 @@ export interface Anime {
   season?: string
   year: number
   genres: Genre[]
-  studios: Studio[]
+  studios?: Studio[]
 }
 
 export interface Manga {
   mal_id: number
   url: string
-  images: {
-    jpg: {
-      image_url: string
-      small_image_url: string
-      large_image_url: string
-    }
-    webp: {
-      image_url: string
-      small_image_url: string
-      large_image_url: string
-    }
-  }
+  images: Image
   titles: Title[]
   title: string
   title_english: string
@@ -103,4 +81,25 @@ interface Studio {
   type: string
   name: string
   url: string
+}
+
+interface Image {
+  jpg: {
+    image_url: string
+    small_image_url: string
+    large_image_url: string
+  }
+  webp: {
+    image_url: string
+    small_image_url: string
+    large_image_url: string
+  }
+
+}
+
+export interface Character {
+  mal_id: number
+  url: string
+  images: Image
+  name: string
 }
