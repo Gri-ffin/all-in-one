@@ -73,7 +73,7 @@ const DetailsScreen = () => {
         <Separator alignSelf="stretch" vertical marginHorizontal={15} />
         <Text color={tab === 'characters' ? config.themes.secondary.gradient : 'gray'} onPress={setCharactersTab}>Characters</Text>
       </XStack>
-      <SynopsisSection query={query} />
+      {tab === 'synopsis' && <SynopsisSection query={query} />}
     </Wrapper>
   )
 }
