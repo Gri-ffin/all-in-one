@@ -8,7 +8,7 @@ interface Props {
 }
 
 const SynopsisSection = ({ query }: Props) => {
-  return (
+ return (
     <>
       <XStack marginTop={30} borderWidth={0.3} borderRadius={20} width={309} marginHorizontal={-8}>
         <YStack borderRightWidth={0.3} width="32%" alignItems="center" paddingVertical={17} justifyContent="center">
