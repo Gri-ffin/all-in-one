@@ -20,6 +20,7 @@ const Trending = ({ data }: Props) => {
             imageSource={item.images.jpg.image_url}
             title={item.title}
             score={item.score}
+            id={item.mal_id}
           />
         ))}
       </XStack>

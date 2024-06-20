@@ -1,11 +1,11 @@
-import { getTrendingManga } from '@/api/trending/api';
-import { MyAnimeListTrendingMangaResponse } from '@/api/trending/types';
+import { getTrendingManga } from '@/api/trending/api'
+import { MyAnimeListTrendingMangaResponse } from '@/api/trending/types'
 import Header from '@/components/Header'
-import MangaCard from '@/components/MangaCard';
-import Wrapper from "@/components/Wrapper";
-import { Ionicons } from '@expo/vector-icons';
-import { useQuery } from '@tanstack/react-query';
-import { Input, XStack, Text, Button, View, Spinner, ScrollView } from 'tamagui';
+import MangaCard from '@/components/MangaCard'
+import Wrapper from '@/components/Wrapper'
+import { Ionicons } from '@expo/vector-icons'
+import { useQuery } from '@tanstack/react-query'
+import { Input, XStack, Text, Button, View, Spinner, ScrollView } from 'tamagui'
 
 export default function MangaScreen() {
   const query = useQuery<MyAnimeListTrendingMangaResponse>({
@@ -44,8 +44,8 @@ export default function MangaScreen() {
               popularity={manga.popularity}
               score={manga.score}
               from={manga.published.from}
-              to={manga.published.to}
               key={manga.mal_id}
+              id={manga.mal_id}
             />
           ))}
         </View>
@@ -56,7 +56,7 @@ export default function MangaScreen() {
   return (
     <Wrapper>
       <Header />
-      <Input placeholder='Seach manga' marginTop={22} />
+      <Input placeholder='Search manga' marginTop={22} />
       <XStack alignItems='center' justifyContent='space-between' marginTop={17}>
         <Text fontSize='$4'>Trending Manga</Text>
         <Button>
