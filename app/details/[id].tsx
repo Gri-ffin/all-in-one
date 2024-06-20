@@ -94,17 +94,18 @@ const DetailsScreen = () => {
             <ExternalLink
               style={{ color: 'blue' }}
               href={
-                query.data?.data.studios ? query.data?.data.studios[0].url : ''
+                query.data?.data.studios && query.data?.data.studios[0] ? query.data.data.studios[0].url : ''
               }
             >
-              {query.data?.data.studios
-                ? query.data?.data.studios[0].name
-                : '??'}
+              {query.data?.data.studios &&
+                query.data?.data.studios[0] ? query.data.data.studios[0].name
+                : '??'
+              }
             </ExternalLink>
           </Text>
           <Text fontSize='$6' color='gray' lineHeight={20}>
             genres:{' '}
-            {query.data?.data.genres.map(genre => genre.name).join(', ') ||
+            {query.data?.data.genres && query.data?.data.genres.map(genre => genre.name).join(', ') ||
               '??'}
           </Text>
         </YStack>
