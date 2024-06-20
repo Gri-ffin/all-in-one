@@ -22,7 +22,7 @@ export interface Anime {
     to: string
   }
   duration: string
-  rating: string
+  rating?: string
   score: number
   scored_by: number
   rank: string
