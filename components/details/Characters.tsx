@@ -1,10 +1,7 @@
 import { getAnimeCharacters } from '@/api/details/api'
 import { CharacterResponse } from '@/api/details/types'
 import { useQuery } from '@tanstack/react-query'
-import { View, Spinner, Text, XStack, YStack, ScrollView } from 'tamagui'
-import Avatar from '../Avatar'
-import { Character } from '@/api/types'
-import { Link } from 'expo-router'
+import { View, Spinner, Text, ScrollView } from 'tamagui'
 import CharacterCard from '../CharacterCard'
 
 interface Props {
