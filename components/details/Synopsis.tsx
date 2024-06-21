@@ -52,7 +52,7 @@ const SynopsisSection = ({ query }: Props) => {
           justifyContent='center'
         >
           <Text fontSize='$3' textAlign='center'>
-            {query.data?.data.rating.split(' - ')[0]}
+            {query.data?.data.rating ? query.data?.data.rating.split(' - ')[0] : '??'}
           </Text>
           <Text fontSize='$6' color='gray'>
             Rating

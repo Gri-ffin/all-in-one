@@ -12,15 +12,17 @@ import {
   XStack,
   Button,
   YStack,
-  Separator
+  Separator,
+  ScrollView
 } from 'tamagui'
 import config from '@/tamagui.config'
 import { ExternalLink } from '@/components/ExternalLink'
 import { useState } from 'react'
 import SynopsisSection from '@/components/details/Synopsis'
 import CharactersSection from '@/components/details/Characters'
+import YoutubePlayer from 'react-native-youtube-iframe'
 
-type Tab = 'synopsis' | 'characters'
+type Tab = 'synopsis' | 'characters' | 'trailer'
 
 const DetailsScreen = () => {
   const { id } = useLocalSearchParams()
@@ -36,6 +38,9 @@ const DetailsScreen = () => {
   }
   const setCharactersTab = () => {
     setTab('characters')
+  }
+  const setTrailerTab = () => {
+    setTab('trailer')
   }
 
   if (query.isLoading) {
@@ -55,6 +60,8 @@ const DetailsScreen = () => {
       </View>
     )
   }
+
+  console.log(query.data?.data.trailer.youtube_id)
 
   return (
     <Wrapper>
@@ -110,14 +117,15 @@ const DetailsScreen = () => {
           </Text>
         </YStack>
       </XStack>
+
       <XStack
         marginTop={30}
         borderWidth={0.3}
         borderRadius={15}
-        marginHorizontal={-8}
         alignItems='center'
-        justifyContent='space-evenly'
+        justifyContent='center'
         paddingVertical={8}
+        width='100%'
       >
         <Text
           color={tab === 'synopsis' ? config.themes.secondary.gradient : 'gray'}
@@ -134,11 +142,34 @@ const DetailsScreen = () => {
         >
           Characters
         </Text>
+        <Separator alignSelf='stretch' vertical marginHorizontal={15} />
+        <Text
+          color={
+            tab === 'trailer' ? config.themes.secondary.gradient : 'gray'
+          }
+          onPress={setTrailerTab}
+        >
+          Trailer
+        </Text>
       </XStack>
       {tab === 'synopsis' && <SynopsisSection query={query} />}
       {tab === 'characters' && (
         <CharactersSection id={parseInt(id as string)} />
       )}
+      {tab === 'trailer' && (
+        query.data?.data.trailer.youtube_id ? (
+          <View marginTop={20}>
+            <YoutubePlayer
+              height={170}
+              play={false}
+              videoId={query.data.data.trailer.youtube_id}
+              mute={false}
+            />
+          </View>
+        ) : (
+          <Text fontSize='$4' marginTop={35}>No trailer available.</Text>
+        ))
+      }
     </Wrapper>
   )
 }
