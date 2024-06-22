@@ -83,7 +83,7 @@ interface Studio {
   url: string
 }
 
-interface Image {
+export interface Image {
   jpg: {
     image_url: string
     small_image_url: string
