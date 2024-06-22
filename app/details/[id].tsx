@@ -13,7 +13,6 @@ import {
   Button,
   YStack,
   Separator,
-  ScrollView
 } from 'tamagui'
 import config from '@/tamagui.config'
 import { ExternalLink } from '@/components/ExternalLink'
