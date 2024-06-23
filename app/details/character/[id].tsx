@@ -8,6 +8,7 @@ import { useState } from "react"
 import { Text, View, Spinner, Image, Separator, XStack } from 'tamagui'
 import config from '@/tamagui.config'
 import SynopsisSection from "@/components/details/character/SynopsisSection"
+import AnimeSection from "@/components/details/character/AnimeSection"
 
 type Tab = 'synopsis' | 'anime' | 'voiceactors'
 
@@ -83,7 +84,7 @@ const CharacterDetailScreen = () => {
           }
           onPress={setAnimeTab}
         >
-          Characters
+          Anime
         </Text>
         <Separator alignSelf='stretch' vertical marginHorizontal={15} />
         <Text
@@ -92,10 +93,11 @@ const CharacterDetailScreen = () => {
           }
           onPress={setVoiceActorsTab}
         >
-          Trailer
+          Voice actors
         </Text>
       </XStack>
       {tab === 'synopsis' && <SynopsisSection character={character} />}
+      {tab === 'anime' && <AnimeSection character={character} />}
     </Wrapper >
   )
 }
