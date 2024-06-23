@@ -105,7 +105,6 @@ const DetailsScreen = () => {
           </Text>
         </YStack>
       </XStack>
-
       <XStack
         marginTop={30}
         borderWidth={0.3}
