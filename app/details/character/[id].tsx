@@ -2,18 +2,32 @@ import { getCharacterFullById } from "@/api/details/api"
 import { FullCharacterResponse } from "@/api/details/types"
 import StackHeader from "@/components/StackHeader"
 import Wrapper from "@/components/Wrapper"
-import { Ionicons } from "@expo/vector-icons"
 import { useQuery } from "@tanstack/react-query"
 import { useLocalSearchParams } from "expo-router"
-import { Dimensions } from "react-native"
-import { Text, View, Spinner, Image, YStack, ListItem, ScrollView, Button } from 'tamagui'
+import { useState } from "react"
+import { Text, View, Spinner, Image, Separator, XStack } from 'tamagui'
+import config from '@/tamagui.config'
+import SynopsisSection from "@/components/details/character/SynopsisSection"
+
+type Tab = 'synopsis' | 'anime' | 'voiceactors'
 
 const CharacterDetailScreen = () => {
+  const [tab, setTab] = useState<Tab>('synopsis')
   const { id } = useLocalSearchParams()
   const query = useQuery<FullCharacterResponse>({
     queryKey: ['character-full', id],
     queryFn: () => getCharacterFullById(parseInt(id as string))
   })
+
+  const setSynopsisTab = () => {
+    setTab('synopsis')
+  }
+  const setAnimeTab = () => {
+    setTab('anime')
+  }
+  const setVoiceActorsTab = () => {
+    setTab('voiceactors')
+  }
 
   if (query.isLoading) {
     return (
@@ -47,24 +61,41 @@ const CharacterDetailScreen = () => {
         borderRadius={10}
         alignSelf="center"
       />
-      <Text fontSize='$4' marginTop={10}>Name: <Text fontSize='$5' color='gray'>{character.name}</Text></Text>
-      <Text fontSize='$4' marginVertical={5}>Kanji: <Text fontSize='$5' color='gray'>{character.name_kanji}</Text></Text>
-      <Text fontSize='$4'>
-        Favorites:
-        <Text fontSize='$5' color='gray' alignItems="center">
-          {character.favorites || '??'} <Ionicons name="heart" color='red' size={13} />
+      <XStack
+        marginTop={30}
+        borderWidth={0.3}
+        borderRadius={15}
+        alignItems='center'
+        justifyContent='center'
+        paddingVertical={8}
+        width='100%'
+      >
+        <Text
+          color={tab === 'synopsis' ? config.themes.secondary.gradient : 'gray'}
+          onPress={setSynopsisTab}
+        >
+          Synopsis
         </Text>
-      </Text>
-      <Text fontSize='$4' marginVertical={5}>
-        Nicknames:
-        <Text fontSize='$5' color='gray' alignItems="center">
-          {' '}{character.nicknames.join(', ')}
+        <Separator alignSelf='stretch' vertical marginHorizontal={15} />
+        <Text
+          color={
+            tab === 'anime' ? config.themes.secondary.gradient : 'gray'
+          }
+          onPress={setAnimeTab}
+        >
+          Characters
         </Text>
-      </Text>
-      <Text fontSize='$4'>About: </Text>
-      <ScrollView marginTop={5} height='$20'>
-        <Text fontSize='$6' color='gray'>{character.about}</Text>
-      </ScrollView>
+        <Separator alignSelf='stretch' vertical marginHorizontal={15} />
+        <Text
+          color={
+            tab === 'voiceactors' ? config.themes.secondary.gradient : 'gray'
+          }
+          onPress={setVoiceActorsTab}
+        >
+          Trailer
+        </Text>
+      </XStack>
+      {tab === 'synopsis' && <SynopsisSection character={character} />}
     </Wrapper >
   )
 }
