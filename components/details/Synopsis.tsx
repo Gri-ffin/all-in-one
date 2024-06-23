@@ -60,9 +60,9 @@ const SynopsisSection = ({ query }: Props) => {
         </YStack>
       </XStack>
       <ScrollView
-        marginTop={30}
+        marginTop={20}
         height='$20'
-        contentContainerStyle={{ paddingBottom: 40 }}
+        contentContainerStyle={{ paddingBottom: 100 }}
       >
         <Text fontSize={12} lineHeight={20} overflow='scroll'>
           {query.data?.data.synopsis}
