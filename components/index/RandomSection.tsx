@@ -52,7 +52,7 @@ const RandomSection = () => {
         marginVertical={15}
         backgroundColor={config.themes.secondary.gradient}
         paddingVertical={5}
-        borderRadius={60}
+        borderRadius={10}
       >
         <Avatar
           source={{
