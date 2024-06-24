@@ -1,16 +1,14 @@
 import { getAnimeDetails } from '@/api/details/api'
 import { AnimeResponse } from '@/api/details/types'
 import Wrapper from '@/components/Wrapper'
-import { Ionicons } from '@expo/vector-icons'
 import { useQuery } from '@tanstack/react-query'
-import { useLocalSearchParams, useNavigation } from 'expo-router'
+import { useLocalSearchParams } from 'expo-router'
 import {
   Spinner,
   Text,
   View,
   Image,
   XStack,
-  Button,
   YStack,
   Separator,
 } from 'tamagui'
@@ -20,12 +18,12 @@ import { useState } from 'react'
 import SynopsisSection from '@/components/details/Synopsis'
 import CharactersSection from '@/components/details/Characters'
 import YoutubePlayer from 'react-native-youtube-iframe'
+import StackHeader from '@/components/StackHeader'
 
 type Tab = 'synopsis' | 'characters' | 'trailer'
 
 const DetailsScreen = () => {
   const { id } = useLocalSearchParams()
-  const navigation = useNavigation()
   const query = useQuery<AnimeResponse>({
     queryKey: ['anime-details', id],
     queryFn: () => getAnimeDetails(parseInt(id as string))
@@ -60,18 +58,9 @@ const DetailsScreen = () => {
     )
   }
 
-  console.log(query.data?.data.trailer.youtube_id)
-
   return (
     <Wrapper>
-      <XStack alignItems='center' marginTop={-15} marginHorizontal={-15}>
-        <Button onPress={() => navigation.goBack()}>
-          <Ionicons size={28} name='arrow-back' />
-        </Button>
-        <Text textAlign='center' flex={0.8} fontSize='$5'>
-          Details
-        </Text>
-      </XStack>
+      <StackHeader title='Details' />
       <XStack marginTop={20}>
         <Image
           width={130}
@@ -116,7 +105,6 @@ const DetailsScreen = () => {
           </Text>
         </YStack>
       </XStack>
-
       <XStack
         marginTop={30}
         borderWidth={0.3}

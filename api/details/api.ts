@@ -10,3 +10,8 @@ export const getAnimeCharacters = async (id: number) => {
   const response = await axios.get(`${MYANIMELIST_API}/anime/${id}/characters`)
   return response.data
 }
+
+export const getCharacterFullById = async (id: number) => {
+  const response = await axios.get(`${MYANIMELIST_API}/characters/${id}/full`)
+  return response.data
+}
