@@ -13,7 +13,7 @@ const VoiceActors = ({ character }: Props) => {
         {character.voices.map(a => (
           <XStack key={a.person.mal_id}>
             <Avatar source={{ uri: a.person.images.jpg.image_url }} alt={a.person.name} />
-            <YStack>
+            <YStack justifyContent="center">
               <Text width={220} fontSize='$5' marginLeft={5}>{a.person.name}</Text>
               <Text width={220} fontSize='$6' color='gray' marginLeft={5}>{a.language}</Text>
             </YStack>
