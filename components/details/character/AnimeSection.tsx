@@ -13,7 +13,7 @@ const AnimeSection = ({ character }: Props) => {
       <YStack gap={20} marginBottom={20}>
         {character.anime.map(a => (
           <Link asChild key={a.anime.mal_id} href={`/details/${a.anime.mal_id}`}>
-            <XStack>
+            <XStack alignItems="center">
               <Avatar source={{ uri: a.anime.images.jpg.image_url }} alt={a.anime.title} />
               <Text width={220} fontSize='$5' marginLeft={5}>{a.anime.title}</Text>
             </XStack>
