@@ -9,6 +9,7 @@ import { Text, View, Spinner, Image, Separator, XStack } from 'tamagui'
 import config from '@/tamagui.config'
 import SynopsisSection from "@/components/details/character/SynopsisSection"
 import AnimeSection from "@/components/details/character/AnimeSection"
+import VoiceActors from "@/components/details/character/VoiceActors"
 
 type Tab = 'synopsis' | 'anime' | 'voiceactors'
 
@@ -98,6 +99,7 @@ const CharacterDetailScreen = () => {
       </XStack>
       {tab === 'synopsis' && <SynopsisSection character={character} />}
       {tab === 'anime' && <AnimeSection character={character} />}
+      {tab === 'voiceactors' && <VoiceActors character={character} />}
     </Wrapper >
   )
 }
