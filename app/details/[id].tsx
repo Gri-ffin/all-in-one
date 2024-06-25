@@ -7,20 +7,14 @@ import {
   Spinner,
   Text,
   View,
-  Image,
-  XStack,
-  YStack,
-  Separator,
 } from 'tamagui'
-import config from '@/tamagui.config'
-import { ExternalLink } from '@/components/ExternalLink'
 import { useState } from 'react'
 import SynopsisSection from '@/components/details/Synopsis'
 import CharactersSection from '@/components/details/Characters'
-import YoutubePlayer from 'react-native-youtube-iframe'
 import StackHeader from '@/components/StackHeader'
-
-type Tab = 'synopsis' | 'characters' | 'trailer'
+import AnimeInfo from '@/components/details/AnimeInfo'
+import Tabs from '@/components/Tabs'
+import VideoPlayer from '@/components/VideoPlayer'
 
 const DetailsScreen = () => {
   const { id } = useLocalSearchParams()
@@ -28,17 +22,13 @@ const DetailsScreen = () => {
     queryKey: ['anime-details', id],
     queryFn: () => getAnimeDetails(parseInt(id as string))
   })
-  const [tab, setTab] = useState<Tab>('synopsis')
+  const [activeTab, setActiveTab] = useState('synopsis')
 
-  const setSynopsisTab = () => {
-    setTab('synopsis')
-  }
-  const setCharactersTab = () => {
-    setTab('characters')
-  }
-  const setTrailerTab = () => {
-    setTab('trailer')
-  }
+  const tabs = [
+    { key: 'synopsis', label: 'Synopsis' },
+    { key: 'characters', label: 'Characters' },
+    { key: 'trailer', label: 'Trailer' },
+  ]
 
   if (query.isLoading) {
     return (
@@ -61,98 +51,15 @@ const DetailsScreen = () => {
   return (
     <Wrapper>
       <StackHeader title='Details' />
-      <XStack marginTop={20}>
-        <Image
-          width={130}
-          height={180}
-          source={{ uri: query.data?.data.images.jpg.large_image_url }}
-          borderRadius={15}
-        />
-        <YStack
-          flexDirection='column'
-          justifyContent='center'
-          marginLeft={8}
-          width={150}
-        >
-          <Text fontSize='$4'>{query.data?.data.title}</Text>
-          <Text fontSize='$6' color='gray' marginVertical={6}>
-            status: {query.data?.data.status}
-          </Text>
-          <Text fontSize='$6' color='gray' marginBottom={6}>
-            rank: #{query.data?.data.popularity}
-          </Text>
-          <Text fontSize='$6' color='gray' marginBottom={6}>
-            season: {query.data?.data.season || '??'}
-          </Text>
-          <Text fontSize='$6' color='gray' marginBottom={5}>
-            studio:{' '}
-            <ExternalLink
-              style={{ color: 'blue' }}
-              href={
-                query.data?.data.studios && query.data?.data.studios[0] ? query.data.data.studios[0].url : ''
-              }
-            >
-              {query.data?.data.studios &&
-                query.data?.data.studios[0] ? query.data.data.studios[0].name
-                : '??'
-              }
-            </ExternalLink>
-          </Text>
-          <Text fontSize='$6' color='gray' lineHeight={20}>
-            genres:{' '}
-            {query.data?.data.genres && query.data?.data.genres.map(genre => genre.name).join(', ') ||
-              '??'}
-          </Text>
-        </YStack>
-      </XStack>
-      <XStack
-        marginTop={30}
-        borderWidth={0.3}
-        borderRadius={15}
-        alignItems='center'
-        justifyContent='center'
-        paddingVertical={8}
-        width='100%'
-      >
-        <Text
-          color={tab === 'synopsis' ? config.themes.secondary.gradient : 'gray'}
-          onPress={setSynopsisTab}
-        >
-          Synopsis
-        </Text>
-        <Separator alignSelf='stretch' vertical marginHorizontal={15} />
-        <Text
-          color={
-            tab === 'characters' ? config.themes.secondary.gradient : 'gray'
-          }
-          onPress={setCharactersTab}
-        >
-          Characters
-        </Text>
-        <Separator alignSelf='stretch' vertical marginHorizontal={15} />
-        <Text
-          color={
-            tab === 'trailer' ? config.themes.secondary.gradient : 'gray'
-          }
-          onPress={setTrailerTab}
-        >
-          Trailer
-        </Text>
-      </XStack>
-      {tab === 'synopsis' && <SynopsisSection query={query} />}
-      {tab === 'characters' && (
+      <AnimeInfo data={query.data!.data} />
+      <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+      {activeTab === 'synopsis' && <SynopsisSection query={query} />}
+      {activeTab === 'characters' && (
         <CharactersSection id={parseInt(id as string)} />
       )}
-      {tab === 'trailer' && (
+      {activeTab === 'trailer' && (
         query.data?.data.trailer.youtube_id ? (
-          <View marginTop={20}>
-            <YoutubePlayer
-              height={170}
-              play={false}
-              videoId={query.data.data.trailer.youtube_id}
-              mute={false}
-            />
-          </View>
+          <VideoPlayer youtubeId={query.data.data.trailer.youtube_id} />
         ) : (
           <Text fontSize='$4' marginTop={35}>No trailer available.</Text>
         ))

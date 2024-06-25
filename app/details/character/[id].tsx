@@ -5,31 +5,25 @@ import Wrapper from "@/components/Wrapper"
 import { useQuery } from "@tanstack/react-query"
 import { useLocalSearchParams } from "expo-router"
 import { useState } from "react"
-import { Text, View, Spinner, Image, Separator, XStack } from 'tamagui'
-import config from '@/tamagui.config'
+import { Text, View, Spinner, Image } from 'tamagui'
 import SynopsisSection from "@/components/details/character/SynopsisSection"
 import AnimeSection from "@/components/details/character/AnimeSection"
 import VoiceActors from "@/components/details/character/VoiceActors"
-
-type Tab = 'synopsis' | 'anime' | 'voiceactors'
+import Tabs from '@/components/Tabs'
 
 const CharacterDetailScreen = () => {
-  const [tab, setTab] = useState<Tab>('synopsis')
+  const [activeTab, setActiveTab] = useState<string>('synopsis')
   const { id } = useLocalSearchParams()
   const query = useQuery<FullCharacterResponse>({
     queryKey: ['character-full', id],
     queryFn: () => getCharacterFullById(parseInt(id as string))
   })
 
-  const setSynopsisTab = () => {
-    setTab('synopsis')
-  }
-  const setAnimeTab = () => {
-    setTab('anime')
-  }
-  const setVoiceActorsTab = () => {
-    setTab('voiceactors')
-  }
+  const tabs = [
+    { key: 'synopsis', label: 'Synopsis' },
+    { key: 'anime', label: 'Anime' },
+    { key: 'voiceactors', label: 'Voice actors' }
+  ]
 
   if (query.isLoading) {
     return (
@@ -63,43 +57,10 @@ const CharacterDetailScreen = () => {
         borderRadius={10}
         alignSelf="center"
       />
-      <XStack
-        marginTop={30}
-        borderWidth={0.3}
-        borderRadius={15}
-        alignItems='center'
-        justifyContent='center'
-        paddingVertical={8}
-        width='100%'
-      >
-        <Text
-          color={tab === 'synopsis' ? config.themes.secondary.gradient : 'gray'}
-          onPress={setSynopsisTab}
-        >
-          Synopsis
-        </Text>
-        <Separator alignSelf='stretch' vertical marginHorizontal={15} />
-        <Text
-          color={
-            tab === 'anime' ? config.themes.secondary.gradient : 'gray'
-          }
-          onPress={setAnimeTab}
-        >
-          Anime
-        </Text>
-        <Separator alignSelf='stretch' vertical marginHorizontal={15} />
-        <Text
-          color={
-            tab === 'voiceactors' ? config.themes.secondary.gradient : 'gray'
-          }
-          onPress={setVoiceActorsTab}
-        >
-          Voice actors
-        </Text>
-      </XStack>
-      {tab === 'synopsis' && <SynopsisSection character={character} />}
-      {tab === 'anime' && <AnimeSection character={character} />}
-      {tab === 'voiceactors' && <VoiceActors character={character} />}
+      <Tabs tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
+      {activeTab === 'synopsis' && <SynopsisSection character={character} />}
+      {activeTab === 'anime' && <AnimeSection character={character} />}
+      {activeTab === 'voiceactors' && <VoiceActors character={character} />}
     </Wrapper >
   )
 }
