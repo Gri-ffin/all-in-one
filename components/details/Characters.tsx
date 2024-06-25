@@ -45,7 +45,7 @@ const CharactersSection = ({ id }: Props) => {
   const displayCharacters = characterData.slice(0, visibleCount)
 
   if (characterData.length === 0) {
-    characterSection = <Text fontSize='$4' marginTop={35}>No character data available</Text>
+    characterSection = <Text fontSize='$4' marginTop={35}>No character data available.</Text>
   } else {
     characterSection = displayCharacters.map(character => (
       <CharacterCard data={character} key={character.character.mal_id} id={character.character.mal_id} />
