@@ -5,6 +5,8 @@ import Wrapper from "@/components/Wrapper"
 import { useQuery } from "@tanstack/react-query"
 import { useLocalSearchParams } from "expo-router"
 import { View, Text, Spinner, Image } from "tamagui"
+import Tabs from '@/components/Tabs'
+import { useState } from "react"
 
 const VoiceActorScreen = () => {
   const { id } = useLocalSearchParams()
@@ -12,6 +14,11 @@ const VoiceActorScreen = () => {
     queryKey: ['voice-actor', id],
     queryFn: () => getVoiceActor(parseInt(id as string))
   })
+  const [activeTab, setActiveTab] = useState<string>('synopsis')
+
+  const tabs = [
+    { key: 'synopsis', label: 'Synopsis' },
+  ]
 
   if (query.isLoading) {
     return (
@@ -45,6 +52,7 @@ const VoiceActorScreen = () => {
         borderRadius={10}
         alignSelf="center"
       />
+      <Tabs tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
     </Wrapper>
   )
 }
