@@ -1,13 +1,13 @@
+import StackHeader from "@/components/StackHeader"
 import Wrapper from "@/components/Wrapper"
 import { useLocalSearchParams } from "expo-router"
-import { Text } from 'tamagui'
 
 const VoiceActorScreen = () => {
   const { id } = useLocalSearchParams()
 
   return (
     <Wrapper>
-      <Text>{id}</Text>
+      <StackHeader title="Voice actor" />
     </Wrapper>
   )
 }
