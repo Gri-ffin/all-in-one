@@ -9,6 +9,7 @@ import Tabs from '@/components/Tabs'
 import { useState } from "react"
 import SynopsisSection from "@/components/details/voiceactor/SynopsisSection"
 import AnimeSection from "@/components/details/voiceactor/AnimeSection"
+import MangaSection from "@/components/details/voiceactor/MangaSection"
 
 
 const VoiceActorScreen = () => {
@@ -22,6 +23,7 @@ const VoiceActorScreen = () => {
   const tabs = [
     { key: 'synopsis', label: 'Synopsis' },
     { key: 'anime', label: 'Anime' },
+    { key: 'manga', label: 'Manga' },
   ]
 
   if (query.isLoading) {
@@ -59,6 +61,7 @@ const VoiceActorScreen = () => {
       <Tabs tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
       {activeTab === 'synopsis' && <SynopsisSection data={voiceActor} />}
       {activeTab === 'anime' && <AnimeSection data={voiceActor} />}
+      {activeTab === 'manga' && <MangaSection data={voiceActor} />}
     </Wrapper>
   )
 }

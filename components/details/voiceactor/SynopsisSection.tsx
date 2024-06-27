@@ -25,7 +25,7 @@ const SynopsisSection = ({ data }: Props) => {
       </Text>
       <Text fontSize='$4'>About: </Text>
       <ScrollView marginTop={5} contentContainerStyle={{ paddingBottom: 400 }}>
-        <Text fontSize={12} minHeight='$20' lineHeight={20} color='gray'>{data.about}</Text>
+        <Text fontSize={12} minHeight='$20' lineHeight={20} color='gray'>{data.about || 'No description available.'}</Text>
       </ScrollView>
     </>
   )

@@ -9,26 +9,26 @@ interface Props {
   data: VoiceActorResponse['data']
 }
 
-const AnimeSection = ({ data }: Props) => {
+const MangaSection = ({ data }: Props) => {
   const [visibleCount, setVisibleCount] = useState<number>(10)
 
-  let animeSection = null
+  let mangaSection = null
 
   const loadMoreCharacters = () => {
     setVisibleCount(prevCount => prevCount + 10)
   }
 
-  const animeData = data.anime || []
-  const displayAnime = animeData.slice(0, visibleCount)
+  const mangaData = data.manga || []
+  const displayManga = mangaData.slice(0, visibleCount)
 
-  if (animeData.length === 0) {
-    animeSection = <Text fontSize='$4' marginTop={35}>No anime data available.</Text>
+  if (mangaData.length === 0) {
+    mangaSection = <Text fontSize='$4' marginTop={35}>No manga data available.</Text>
   } else {
-    animeSection = displayAnime.map(a => (
-      <Link asChild key={a.anime.mal_id} href={`/details/${a.anime.mal_id}`}>
+    mangaSection = displayManga.map(a => (
+      <Link asChild key={a.manga.mal_id} href={`/details/manga/${a.manga.mal_id}`}>
         <XStack alignItems="center">
-          <Avatar source={{ uri: a.anime.images.jpg.image_url }} alt={a.anime.title} />
-          <Text width={220} fontSize='$5' marginLeft={5}>{a.anime.title}</Text>
+          <Avatar source={{ uri: a.manga.images.jpg.image_url }} alt={a.manga.title} />
+          <Text width={220} fontSize='$5' marginLeft={5}>{a.manga.title}</Text>
         </XStack>
       </Link>
     ))
@@ -37,8 +37,8 @@ const AnimeSection = ({ data }: Props) => {
   return (
     <ScrollView height={400} marginTop={20}>
       <YStack gap={20} marginBottom={20}>
-        {animeSection}
-        {visibleCount < animeData.length && (
+        {mangaSection}
+        {visibleCount < mangaData.length && (
           <Button
             onPress={loadMoreCharacters}
             backgroundColor={config.themes.secondary.gradient}
@@ -54,4 +54,4 @@ const AnimeSection = ({ data }: Props) => {
   )
 }
 
-export default AnimeSection
+export default MangaSection
