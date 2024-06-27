@@ -7,6 +7,9 @@ import { useLocalSearchParams } from "expo-router"
 import { View, Text, Spinner, Image } from "tamagui"
 import Tabs from '@/components/Tabs'
 import { useState } from "react"
+import SynopsisSection from "@/components/details/voiceactor/SynopsisSection"
+import AnimeSection from "@/components/details/voiceactor/AnimeSection"
+
 
 const VoiceActorScreen = () => {
   const { id } = useLocalSearchParams()
@@ -18,6 +21,7 @@ const VoiceActorScreen = () => {
 
   const tabs = [
     { key: 'synopsis', label: 'Synopsis' },
+    { key: 'anime', label: 'Anime' },
   ]
 
   if (query.isLoading) {
@@ -53,6 +57,8 @@ const VoiceActorScreen = () => {
         alignSelf="center"
       />
       <Tabs tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
+      {activeTab === 'synopsis' && <SynopsisSection data={voiceActor} />}
+      {activeTab === 'anime' && <AnimeSection data={voiceActor} />}
     </Wrapper>
   )
 }
