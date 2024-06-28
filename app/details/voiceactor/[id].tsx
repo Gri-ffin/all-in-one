@@ -10,6 +10,7 @@ import { useState } from "react"
 import SynopsisSection from "@/components/details/voiceactor/SynopsisSection"
 import AnimeSection from "@/components/details/voiceactor/AnimeSection"
 import MangaSection from "@/components/details/voiceactor/MangaSection"
+import VoicesSection from "@/components/details/voiceactor/VoicesSection"
 
 
 const VoiceActorScreen = () => {
@@ -24,6 +25,7 @@ const VoiceActorScreen = () => {
     { key: 'synopsis', label: 'Synopsis' },
     { key: 'anime', label: 'Anime' },
     { key: 'manga', label: 'Manga' },
+    { key: 'voices', label: 'Voices' }
   ]
 
   if (query.isLoading) {
@@ -62,6 +64,7 @@ const VoiceActorScreen = () => {
       {activeTab === 'synopsis' && <SynopsisSection data={voiceActor} />}
       {activeTab === 'anime' && <AnimeSection data={voiceActor} />}
       {activeTab === 'manga' && <MangaSection data={voiceActor} />}
+      {activeTab === 'voices' && <VoicesSection data={voiceActor} />}
     </Wrapper>
   )
 }
