@@ -24,8 +24,8 @@ const VoicesSection = ({ data }: Props) => {
   if (voicesData.length === 0) {
     voicesSection = <Text fontSize='$4' marginTop={35}>No voice data available.</Text>
   } else {
-    voicesSection = displayVoices.map(a => (
-      <Link href={`/details/character/${a.character.mal_id}`} key={a.character.mal_id}>
+    voicesSection = displayVoices.map((a, index) => (
+      <Link href={`/details/character/${a.character.mal_id}`} key={index}>
         <XStack alignItems="center">
           <Avatar source={{ uri: a.character.images.jpg.image_url }} alt={a.character.name} />
           <YStack>
