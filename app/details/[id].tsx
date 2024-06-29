@@ -3,11 +3,7 @@ import { AnimeResponse } from '@/api/details/types'
 import Wrapper from '@/components/Wrapper'
 import { useQuery } from '@tanstack/react-query'
 import { useLocalSearchParams } from 'expo-router'
-import {
-  Spinner,
-  Text,
-  View,
-} from 'tamagui'
+import { Spinner, Text, View, } from 'tamagui'
 import { useState } from 'react'
 import SynopsisSection from '@/components/details/Synopsis'
 import CharactersSection from '@/components/details/Characters'
