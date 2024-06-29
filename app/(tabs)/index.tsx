@@ -13,7 +13,7 @@ export default function AnimeScreen() {
   const router = useRouter()
 
   const onPressSearchAnime = (input: string) => {
-    router.navigate(`/search/${input}`)
+    router.navigate(`/search/anime/${input}`)
   }
 
   return (
