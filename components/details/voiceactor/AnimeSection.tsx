@@ -1,4 +1,4 @@
-import { FullCharacterResponse } from "@/api/details/types";
+import type { VoiceActorResponse } from "@/api/details/types";
 import { ScrollView, YStack, Text, XStack, Button } from "tamagui";
 import Avatar from "@/components/Avatar";
 import { Link } from "expo-router";
@@ -6,10 +6,10 @@ import { useState } from "react";
 import config from "@/tamagui.config";
 
 interface Props {
-  character: FullCharacterResponse['data']
+  data: VoiceActorResponse['data']
 }
 
-const AnimeSection = ({ character }: Props) => {
+const AnimeSection = ({ data }: Props) => {
   const [visibleCount, setVisibleCount] = useState<number>(10)
 
   let animeSection = null
@@ -18,7 +18,7 @@ const AnimeSection = ({ character }: Props) => {
     setVisibleCount(prevCount => prevCount + 10)
   }
 
-  const animeData = character.anime || []
+  const animeData = data.anime || []
   const displayAnime = animeData.slice(0, visibleCount)
 
   if (animeData.length === 0) {

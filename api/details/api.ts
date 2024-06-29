@@ -15,3 +15,8 @@ export const getCharacterFullById = async (id: number) => {
   const response = await axios.get(`${MYANIMELIST_API}/characters/${id}/full`)
   return response.data
 }
+
+export const getVoiceActor = async (id: number) => {
+  const response = await axios.get(`${MYANIMELIST_API}/people/${id}/full`)
+  return response.data
+}
