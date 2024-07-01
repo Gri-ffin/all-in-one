@@ -5,6 +5,8 @@ import MangaCard from '@/components/MangaCard'
 import Wrapper from '@/components/Wrapper'
 import { Ionicons } from '@expo/vector-icons'
 import { useQuery } from '@tanstack/react-query'
+import { useRouter } from 'expo-router'
+import { useState } from 'react'
 import { Input, XStack, Text, Button, View, Spinner, ScrollView } from 'tamagui'
 
 export default function MangaScreen() {
@@ -12,6 +14,12 @@ export default function MangaScreen() {
     queryKey: ['trending-manga'],
     queryFn: getTrendingManga
   })
+  const router = useRouter()
+  const [input, setInput] = useState<string>('')
+
+  const onPressSearchManga = (input: string) => {
+    router.navigate(`/search/manga/${input}`)
+  }
 
   let trendingSection = null
 
@@ -56,7 +64,7 @@ export default function MangaScreen() {
   return (
     <Wrapper>
       <Header />
-      <Input placeholder='Search manga' marginTop={22} />
+      <Input placeholder='Search manga' marginTop={22} onChangeText={setInput} onSubmitEditing={() => onPressSearchManga(input)} />
       <XStack alignItems='center' justifyContent='space-between' marginTop={17}>
         <Text fontSize='$4'>Trending Manga</Text>
         <Button>

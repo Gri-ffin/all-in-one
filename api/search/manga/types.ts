@@ -1,6 +1,6 @@
 import type { Image, Pagination } from '../../types'
 
-interface AnimeSearch {
+interface MangaSearch {
   mal_id: number
   url: string
   images: Image
@@ -9,18 +9,18 @@ interface AnimeSearch {
   title_japanese: string
   title_synonyms: string[]
   status: string
-  airing: boolean
+  publishing: boolean
   rating: string
   rank: number
   season: string
   popularity: number
   score: number
-  aired: {
+  published: {
     from: string
   }
 }
 
-export interface AnimeSearchResponse {
+export interface MangaSearchResponse {
   data: AnimeSearch[]
   pagination: Pagination
 }
