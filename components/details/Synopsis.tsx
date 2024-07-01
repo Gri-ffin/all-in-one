@@ -65,7 +65,7 @@ const SynopsisSection = ({ query }: Props) => {
         contentContainerStyle={{ paddingBottom: 100 }}
       >
         <Text fontSize={12} lineHeight={20} overflow='scroll'>
-          {query.data?.data.synopsis}
+          {query.data?.data.synopsis || 'No description available'}
         </Text>
         <Button
           marginTop={15}
