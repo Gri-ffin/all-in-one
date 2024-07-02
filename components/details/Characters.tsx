@@ -1,4 +1,4 @@
-import { getAnimeCharacters } from '@/api/details/api'
+import { getAnimeCharacters, getMangaCharacters } from '@/api/details/api'
 import { CharacterResponse } from '@/api/details/types'
 import { useQuery } from '@tanstack/react-query'
 import { View, Spinner, Text, ScrollView, Button } from 'tamagui'
@@ -8,12 +8,13 @@ import config from '@/tamagui.config'
 
 interface Props {
   id: number
+  type: 'anime' | 'manga'
 }
 
-const CharactersSection = ({ id }: Props) => {
+const CharactersSection = ({ id, type }: Props) => {
   const query = useQuery<CharacterResponse>({
-    queryKey: ['anime-characters', id],
-    queryFn: () => getAnimeCharacters(id)
+    queryKey: ['characters', id],
+    queryFn: () => type === 'anime' ? getAnimeCharacters(id) : getMangaCharacters(id)
   })
   const [visibleCount, setVisibleCount] = useState<number>(10)
 

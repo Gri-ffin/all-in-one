@@ -63,6 +63,7 @@ export interface Manga {
   synopsis: string
   background: string
   genres: Genre[]
+  authors: Author[]
 }
 
 interface Genre {
@@ -77,6 +78,13 @@ interface Title {
 }
 
 interface Studio {
+  mal_id: number
+  type: string
+  name: string
+  url: string
+}
+
+interface Author {
   mal_id: number
   type: string
   name: string

@@ -1,7 +1,11 @@
-import type { Anime, Character, Image } from "../types";
+import type { Anime, Character, Image, Manga } from "../types";
 
 export interface AnimeResponse {
   data: Anime
+}
+
+export interface MangaResponse {
+  data: Manga
 }
 
 export interface CharacterResponse {

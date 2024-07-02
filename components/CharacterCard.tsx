@@ -7,10 +7,6 @@ interface Props {
   data: {
     character: Character;
     role: string;
-    voice_actors: {
-      person: Character;
-      language: string;
-    }[];
   }
   id: number
 }

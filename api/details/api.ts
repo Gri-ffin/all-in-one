@@ -6,8 +6,18 @@ export const getAnimeDetails = async (id: number) => {
   return response.data
 }
 
+export const getMangaDetails = async (id: number) => {
+  const response = await axios.get(`${MYANIMELIST_API}/manga/${id}/full`)
+  return response.data
+}
+
 export const getAnimeCharacters = async (id: number) => {
   const response = await axios.get(`${MYANIMELIST_API}/anime/${id}/characters`)
+  return response.data
+}
+
+export const getMangaCharacters = async (id: number) => {
+  const response = await axios.get(`${MYANIMELIST_API}/manga/${id}/characters`)
   return response.data
 }
 

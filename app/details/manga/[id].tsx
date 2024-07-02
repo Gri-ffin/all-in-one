@@ -1,29 +1,27 @@
-import { getAnimeDetails } from '@/api/details/api'
-import { AnimeResponse } from '@/api/details/types'
+import { getMangaDetails } from '@/api/details/api'
+import { MangaResponse } from '@/api/details/types'
 import Wrapper from '@/components/Wrapper'
 import { useQuery } from '@tanstack/react-query'
 import { useLocalSearchParams } from 'expo-router'
 import { Spinner, Text, View, } from 'tamagui'
 import { useState } from 'react'
-import SynopsisSection from '@/components/details/Synopsis'
+import SynopsisSection from '@/components/details/manga/Synopsis'
 import CharactersSection from '@/components/details/Characters'
 import StackHeader from '@/components/StackHeader'
-import AnimeInfo from '@/components/details/AnimeInfo'
 import Tabs from '@/components/Tabs'
-import VideoPlayer from '@/components/VideoPlayer'
+import MangaInfo from '@/components/details/MangaInfo'
 
 const DetailsScreen = () => {
   const { id } = useLocalSearchParams()
-  const query = useQuery<AnimeResponse>({
-    queryKey: ['anime-details', id],
-    queryFn: () => getAnimeDetails(parseInt(id as string))
+  const query = useQuery<MangaResponse>({
+    queryKey: ['manga-details', id],
+    queryFn: () => getMangaDetails(parseInt(id as string))
   })
   const [activeTab, setActiveTab] = useState('synopsis')
 
   const tabs = [
     { key: 'synopsis', label: 'Synopsis' },
     { key: 'characters', label: 'Characters' },
-    { key: 'trailer', label: 'Trailer' },
   ]
 
   if (query.isLoading) {
@@ -47,19 +45,12 @@ const DetailsScreen = () => {
   return (
     <Wrapper>
       <StackHeader title='Details' />
-      <AnimeInfo data={query.data!.data} />
+      <MangaInfo data={query.data!.data} />
       <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTab === 'synopsis' && <SynopsisSection query={query} />}
       {activeTab === 'characters' && (
-        <CharactersSection id={parseInt(id as string)} type='anime' />
+        <CharactersSection id={parseInt(id as string)} type='manga' />
       )}
-      {activeTab === 'trailer' && (
-        query.data?.data.trailer.youtube_id ? (
-          <VideoPlayer youtubeId={query.data.data.trailer.youtube_id} />
-        ) : (
-          <Text fontSize='$4' marginTop={35}>No trailer available.</Text>
-        ))
-      }
     </Wrapper>
   )
 }
