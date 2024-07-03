@@ -1,10 +1,10 @@
 import { MYANIMELIST_API } from '@/constants'
 import axios from 'axios'
+import type { Type } from './types'
 
-// TODO: this should accept an api url to change between providers
-export const getTrendingAnime = async () => {
+export const getTopAnime = async (type: Type) => {
   const response = await axios.get(
-    MYANIMELIST_API + '/top/anime?limit=10&filter=airing'
+    MYANIMELIST_API + `/top/anime?limit=10&filter=${type}`
   )
   return response.data
 }
