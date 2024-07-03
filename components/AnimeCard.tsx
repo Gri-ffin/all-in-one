@@ -41,7 +41,7 @@ const AnimeCard = ({ imageSource, title, score, id }: Props) => {
             <Ionicons name='star' size={16} color='orange' />
             <Text color={config.themes.secondary.gray} fontSize='$6'>
               {' '}
-              {score}
+              {score || '??'}
             </Text>
           </XStack>
         </Text>
