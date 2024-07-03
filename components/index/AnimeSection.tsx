@@ -27,6 +27,10 @@ const AnimeSection = () => {
     setType('favorite')
     toggleDrawer()
   }
+  const switchTopUpcoming = () => {
+    setType('upcoming')
+    toggleDrawer()
+  }
 
   let animeSection = null
 
@@ -54,13 +58,14 @@ const AnimeSection = () => {
 
   const items: Item<Type>[] = [
     { name: 'airing', switch: switchTopAiring },
-    { name: 'favorite', switch: switchTopFavorites }
+    { name: 'favorite', switch: switchTopFavorites },
+    { name: 'upcoming', switch: switchTopUpcoming }
   ]
 
   return (
     <>
       <XStack alignItems='center' justifyContent='space-between' marginTop={17}>
-        <Text fontSize='$4'>Top {type} Anime</Text>
+        <Text fontSize='$4'>Top {type} anime</Text>
         <Button onPress={toggleDrawer}>
           <Ionicons size={28} name='ellipsis-horizontal' color='black' />
         </Button>
