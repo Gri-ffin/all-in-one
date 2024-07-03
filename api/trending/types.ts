@@ -8,4 +8,4 @@ export interface MangaResponse {
   data: Manga[]
 }
 
-export type Type = 'airing' | 'favorite'
+export type Type = 'airing' | 'favorite' | 'upcoming'
