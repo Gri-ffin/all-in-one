@@ -1,6 +1,6 @@
 import { Text, View } from '@tamagui/core'
 import { Input } from 'tamagui'
-import TrendingSection from '@/components/index/TrendingSection'
+import AnimeSection from '@/components/index/AnimeSection'
 import Header from '@/components/Header'
 import CharactersSection from '@/components/index/CharactersSection'
 import RandomSection from '@/components/index/RandomSection'
@@ -20,7 +20,7 @@ export default function AnimeScreen() {
     <Wrapper>
       <Header />
       <Input placeholder='Search anime' marginTop={22} onChangeText={setInput} onSubmitEditing={() => onPressSearchAnime(input)} />
-      <TrendingSection />
+      <AnimeSection />
       <View marginTop={15}>
         <Text fontSize='$4'>Top characters</Text>
         <CharactersSection />
