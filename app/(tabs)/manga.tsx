@@ -1,5 +1,5 @@
 import { getTrendingManga } from '@/api/trending/api'
-import { MyAnimeListTrendingMangaResponse } from '@/api/trending/types'
+import { MangaResponse } from '@/api/trending/types'
 import Header from '@/components/Header'
 import MangaCard from '@/components/MangaCard'
 import Wrapper from '@/components/Wrapper'
@@ -10,7 +10,7 @@ import { useState } from 'react'
 import { Input, XStack, Text, Button, View, Spinner, ScrollView } from 'tamagui'
 
 export default function MangaScreen() {
-  const query = useQuery<MyAnimeListTrendingMangaResponse>({
+  const query = useQuery<MangaResponse>({
     queryKey: ['trending-manga'],
     queryFn: getTrendingManga
   })
