@@ -9,9 +9,9 @@ export const getTopAnime = async (type: Type) => {
   return response.data
 }
 
-export const getTrendingManga = async () => {
+export const getTopManga = async (type: string) => {
   const response = await axios.get(
-    MYANIMELIST_API + '/top/manga?limit=10&filter=publishing'
+    MYANIMELIST_API + `/top/manga?limit=10&filter=${type}`
   )
   return response.data
 }
