@@ -24,7 +24,6 @@ const Tabs = ({ tabs, activeTab, setActiveTab }: Props) => {
       paddingVertical={8}
       width='100%'
     >
-
       {tabs.map((tab, index) => (
         <Fragment key={tab.key}>
           <Text
