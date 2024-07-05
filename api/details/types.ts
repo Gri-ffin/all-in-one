@@ -35,7 +35,7 @@ export interface FullCharacterResponse {
   }
 }
 
-interface AniManga {
+export interface AniManga {
   mal_id: number
   url: string
   images: Image
