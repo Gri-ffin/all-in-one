@@ -7,7 +7,7 @@ import { useLocalSearchParams } from "expo-router"
 import { useState } from "react"
 import { Text, View, Spinner, Image } from 'tamagui'
 import SynopsisSection from "@/components/details/character/SynopsisSection"
-import AnimeSection from "@/components/details/character/AnimeSection"
+import AniMangaSection from "@/components/details/character/AniMangaSection"
 import VoiceActors from "@/components/details/character/VoiceActors"
 import Tabs from '@/components/Tabs'
 
@@ -22,7 +22,8 @@ const CharacterDetailScreen = () => {
   const tabs = [
     { key: 'synopsis', label: 'Synopsis' },
     { key: 'anime', label: 'Anime' },
-    { key: 'voiceactors', label: 'Voice actors' }
+    { key: 'manga', label: 'Manga' },
+    { key: 'voiceactors', label: 'Voice' }
   ]
 
   if (query.isLoading) {
@@ -59,9 +60,10 @@ const CharacterDetailScreen = () => {
       />
       <Tabs tabs={tabs} setActiveTab={setActiveTab} activeTab={activeTab} />
       {activeTab === 'synopsis' && <SynopsisSection character={character} />}
-      {activeTab === 'anime' && <AnimeSection character={character} />}
+      {activeTab === 'anime' && <AniMangaSection data={character.anime.map(item => item.anime)} />}
+      {activeTab === 'manga' && <AniMangaSection data={character.manga.map(item => item.manga)} />}
       {activeTab === 'voiceactors' && <VoiceActors character={character} />}
-    </Wrapper >
+    </Wrapper>
   )
 }
 
