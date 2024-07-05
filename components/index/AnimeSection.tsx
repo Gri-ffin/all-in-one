@@ -1,5 +1,5 @@
 import { getTopAnime } from '@/api/trending/api'
-import type { AnimeResponse, Type } from '@/api/trending/types'
+import type { AnimeResponse, AnimeTopType } from '@/api/trending/types'
 import Trending from '@/components/trending'
 import { Ionicons } from '@expo/vector-icons'
 import { useQuery } from '@tanstack/react-query'
@@ -9,7 +9,7 @@ import Drawer from '../Drawer'
 import { Item } from '../types'
 
 const AnimeSection = () => {
-  const [type, setType] = useState<Type>('airing')
+  const [type, setType] = useState<AnimeTopType>('airing')
   const [isDrawerVisible, setIsDrawerVisible] = useState(false)
   const query = useQuery<AnimeResponse>({
     queryKey: [type],
@@ -56,7 +56,7 @@ const AnimeSection = () => {
     animeSection = <Trending data={query.data.data} />
   }
 
-  const items: Item<Type>[] = [
+  const items: Item<AnimeTopType>[] = [
     { name: 'airing', switch: switchTopAiring },
     { name: 'favorite', switch: switchTopFavorites },
     { name: 'upcoming', switch: switchTopUpcoming }
