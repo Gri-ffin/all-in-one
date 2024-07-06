@@ -12,7 +12,6 @@ const SecondaryText = styled(Text, {
 const Header = () => {
   return (
     <XStack alignItems='center' justifyContent='space-between'>
-      {/* TODO: the source of the image should be updated to the user pfp, the same can be said to the lable */}
       <XStack>
         <Avatar
           source={{ uri: 'https://i.pravatar.cc/300' }}
@@ -28,9 +27,9 @@ const Header = () => {
           <Text fontSize='$5'>All in one</Text>
         </YStack>
       </XStack>
-      <Link asChild href='/settings/'>
+      <Link asChild href='/favorites/'>
         <Button>
-          <Ionicons size={28} name='settings-outline' color='black' />
+          <Ionicons size={28} name='heart-outline' color='red' />
         </Button>
       </Link>
     </XStack>
