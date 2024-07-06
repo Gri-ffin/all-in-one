@@ -2,12 +2,24 @@ import type { AnimeResponse } from '@/api/details/types'
 import type { UseQueryResult } from '@tanstack/react-query'
 import { XStack, YStack, Text, ScrollView, Button } from 'tamagui'
 import config from '@/tamagui.config'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 interface Props {
   query: UseQueryResult<AnimeResponse, Error>
 }
 
 const SynopsisSection = ({ query }: Props) => {
+  const saveToFavorites = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('favorites');
+      const favoritesArray = jsonValue != null ? JSON.parse(jsonValue) : [];
+      favoritesArray.push(query.data);
+      await AsyncStorage.setItem('favorites', JSON.stringify(favoritesArray));
+    } catch (e) {
+      throw Error("Can't save to favorites");
+    }
+  };
+
   return (
     <>
       <XStack
