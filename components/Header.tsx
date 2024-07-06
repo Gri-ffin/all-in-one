@@ -1,6 +1,7 @@
 import Avatar from '@/components/Avatar'
 import config from '@/tamagui.config'
 import { Ionicons } from '@expo/vector-icons'
+import { Link } from 'expo-router'
 import { Button, Text, XStack, YStack, styled } from 'tamagui'
 
 const SecondaryText = styled(Text, {
@@ -24,14 +25,14 @@ const Header = () => {
           marginLeft={10}
         >
           <SecondaryText>Stay trending!</SecondaryText>
-          {/* TODO: add the username of the user */}
           <Text fontSize='$5'>All in one</Text>
         </YStack>
       </XStack>
-      {/* TODO: should allow the ability to change the provider (eg. myanimelist, anilist...) */}
-      <Button>
-        <Ionicons size={28} name='settings-outline' color='black' />
-      </Button>
+      <Link asChild href='/settings/'>
+        <Button>
+          <Ionicons size={28} name='settings-outline' color='black' />
+        </Button>
+      </Link>
     </XStack>
   )
 }
