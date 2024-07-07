@@ -8,6 +8,7 @@ interface Props {
 }
 
 const SynopsisSection = ({ query }: Props) => {
+
   return (
     <>
       <XStack
@@ -62,18 +63,11 @@ const SynopsisSection = ({ query }: Props) => {
       <ScrollView
         marginTop={20}
         height='$20'
-        contentContainerStyle={{ paddingBottom: 100 }}
+        contentContainerStyle={{ paddingBottom: 70 }}
       >
         <Text fontSize={12} lineHeight={20} overflow='scroll'>
           {query.data?.data.synopsis || 'No description available'}
         </Text>
-        <Button
-          marginTop={15}
-          color='white'
-          bg={config.themes.secondary.gradient}
-        >
-          Add to favorites
-        </Button>
       </ScrollView>
     </>
   )
