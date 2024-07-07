@@ -1,8 +1,6 @@
 import Avatar from '@/components/Avatar'
 import config from '@/tamagui.config'
-import { Ionicons } from '@expo/vector-icons'
-import { Link } from 'expo-router'
-import { Button, Text, XStack, YStack, styled } from 'tamagui'
+import { Text, XStack, YStack, styled } from 'tamagui'
 
 const SecondaryText = styled(Text, {
   color: config.themes.secondary.gray,
@@ -27,11 +25,6 @@ const Header = () => {
           <Text fontSize='$5'>All in one</Text>
         </YStack>
       </XStack>
-      <Link asChild href='/favorites/'>
-        <Button>
-          <Ionicons size={28} name='heart-outline' color='red' />
-        </Button>
-      </Link>
     </XStack>
   )
 }
